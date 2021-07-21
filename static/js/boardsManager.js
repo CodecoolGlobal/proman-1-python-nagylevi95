@@ -19,6 +19,7 @@ export let boardsManager = {
             domManager.addEventListener(`.add-new-status[new-status-id="${board.id}"]`, "click", addStatus)
             domManager.addEventListener(`.delete-board-button[delete-board-id="${board.id}"]`, "click", deleteBoard)
             domManager.addEventListener(`.toggle-board-button[data-board-id="${board.id}"]`, "click", showHideButtonHandler)
+            domManager.addEventListener(`.board-title[title-id="${board.id}"]`, "click", changeBoardTitle)
         }
 
     },
@@ -58,6 +59,7 @@ async function addBoard(){
     domManager.addEventListener(`.add-new-status[new-status-id="${board.id}"]`, "click", addStatus)
     domManager.addEventListener(`.toggle-board-button[data-board-id="${board.id}"]`, "click", showHideButtonHandler)
     domManager.addEventListener(`.delete-board-button[delete-board-id="${board.id}"]`, "click", deleteBoard)
+    domManager.addEventListener(`.board-title[title-id="${board.id}"]`, "change", changeBoardTitle)
 }
 
 
@@ -104,5 +106,18 @@ async function deleteBoard(clickEvent){
     }
 }
 
-
-
+function changeBoardTitle(clickEvent) {
+    const boardId = clickEvent.target.attributes['title-id'].nodeValue;
+    let element = document.querySelector(`.board-title[title-id='${boardId}']`)
+    let oldText = element.innerText
+    element.addEventListener('focusout', async () =>{
+        let title = element.innerText
+        if(title === ""){
+            element.innerText = "unnamed"
+            await dataHandler.renameBoard(boardId, "unnamed")
+        }
+        else if(title !== oldText){
+            await dataHandler.renameBoard(boardId, title)
+        }
+    })
+}

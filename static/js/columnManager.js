@@ -11,6 +11,7 @@ export let columnsManager = {
                 const content = columnBuilder(column)
                 domManager.addEventListener(`.delete-column-button[delete-status-id="${column.owner}"]`, "click", deleteStatus)
                 domManager.addChild(`.board-container[board-id="${boardId}"] .board-columns`, content)
+                domManager.addEventListener(`.board-column-title[column-title-id='${column.id}']`, "click", changeColumnTitle)
             }
         }
     },
@@ -30,8 +31,24 @@ async function deleteStatus(clickEvent){
 
 
     await dataHandler.deleteStatusById(column.owner, statusId)
-    root.board-container.
+    //root.board-container.
 }
 
+
+function changeColumnTitle(clickEvent) {
+    const columnId = clickEvent.target.attributes['column-title-id'].nodeValue;
+    let element = document.querySelector(`.board-column-title[column-title-id='${columnId}']`)
+    let oldText = element.innerText
+    element.addEventListener('focusout', async () =>{
+        let title = element.innerText
+        if(title === ""){
+            element.innerText = "unnamed"
+            await dataHandler.renameColumn(columnId, "unnamed")
+        }
+        else if(title !== oldText){
+            await dataHandler.renameColumn(columnId, title)
+        }
+    })
+}
 
 

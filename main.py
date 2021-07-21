@@ -107,6 +107,24 @@ def delete_status_by_id(board_id, status_id):
     queires.delete_all_statuses_by_board_status_id(str(board_id), status_id)
 
 
+@app.route("/rename-board-by-id/<int:board_id>/<string:board_title>", methods=["POST"])
+@json_response
+def rename_board_by_id(board_id, board_title):
+    queires.rename_board_by_id(board_id, board_title)
+
+
+@app.route("/rename-card-by-id/<int:card_id>/<string:card_title>", methods=["POST"])
+@json_response
+def rename_card_by_id(card_id, card_title):
+    queires.rename_card_by_id(card_id, card_title)
+
+
+@app.route("/rename-column-by-id/<int:column_id>/<string:column_title>", methods=["POST"])
+@json_response
+def rename_column_by_id(column_id, column_title):
+    queires.rename_column_by_id(column_id, column_title)
+
+
 def main():
     app.run(debug=True)
 
