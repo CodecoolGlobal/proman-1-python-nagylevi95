@@ -100,7 +100,7 @@ def delete_board_by_id(board_id):
     queires.delete_board_by_id(board_id)
 
 
-@app.route("/delete-status-by-id/<int:board_id>/<int:status_id>", methods=["POST"])
+@app.route("/delete-status-by-id/<string:board_id>/<string:status_id>", methods=["POST"])
 @json_response
 def delete_status_by_id(board_id, status_id):
     queires.delete_all_cards_by_board_status_id(board_id, status_id)
@@ -123,6 +123,12 @@ def rename_card_by_id(card_id, card_title):
 @json_response
 def rename_column_by_id(column_id, column_title):
     queires.rename_column_by_id(column_id, column_title)
+
+@app.route("/delete-card-by-id/<string:card_id>", methods=["POST"])
+@json_response
+def delete_card_by_id(card_id):
+    queires.delete_card_by_id(card_id)
+
 
 
 def main():

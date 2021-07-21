@@ -67,6 +67,7 @@ export let dataHandler = {
         await apiPost(`/delete-status-by-id/${boardId}/${statusId}`)
     },
 
+
     renameBoard: async function(boardId, boardTitle){
         await apiPost(`/rename-board-by-id/${boardId}/${boardTitle}`)
     },
@@ -77,6 +78,11 @@ export let dataHandler = {
 
     renameColumn: async function(columnId, columnTitle){
         await apiPost(`/rename-column-by-id/${columnId}/${columnTitle}`)
+    },
+  
+    deleteCardById: async function(card_id){
+        await apiPost(`/delete-card-by-id/${card_id}`)
+
     }
 
 };

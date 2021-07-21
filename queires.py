@@ -197,7 +197,7 @@ def delete_all_statuses_by_board_status_id(cursor, board_id, status_id):
     cursor.execute(
         sql.SQL("""
             DELETE FROM statuses
-            WHERE owner={board_id} and status_id={status_id}
+            WHERE owner={board_id} and id={status_id}
         """).format(
             board_id=sql.Literal(board_id),
             status_id=sql.Literal(status_id),
@@ -245,3 +245,14 @@ def rename_column_by_id(cursor, column_id, column_title):
             column_title=sql.Literal(column_title)
         )
     )
+
+def delete_card_by_id(cursor, card_id):
+    cursor.execute(
+        sql.SQL("""
+            DELETE FROM cards
+            WHERE id={card_id}
+        """).format(
+            card_id=sql.Literal(card_id)
+        )
+)
+
