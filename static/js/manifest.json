@@ -1,0 +1,20 @@
+{
+  "short_name": "Pm",
+  "name": "Proman",
+  "theme_color": "#fff",
+  "icons":[
+    {
+      "src": "../favicon/favicon.svg",
+      "type": "image/png",
+      "sizes": "150x150"
+    },
+    {
+      "src": "https://www.logolynx.com/images/logolynx/30/30e85a8b425c27e64feb9832decfd757.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "background_color": "#000000",
+  "display": "standalone"
+}

@@ -5,6 +5,7 @@
     --status-3: #525900;
     --status-4: #085900;
     --status-5: #085990;
+    width: 100%;
 }
 
 body{
@@ -197,4 +198,13 @@ section.board{
 }
 ul{
 list-style-type:none;
+}
+
+* {
+  box-sizing: border-box;
+  /* Disable font boosting */
+  max-height: 1000000px;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
 }
